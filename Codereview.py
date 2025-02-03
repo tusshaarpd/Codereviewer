@@ -13,7 +13,7 @@ You are a code quality assistant. Analyze this Python code and provide specific 
 
 def get_code_review(code, model_name):
     API_URL = f"https://api-inference.huggingface.co/models/{model_name}"
-    headers = {"Authorization": "Bearer hf_anonymous"}
+    headers = {"Authorization": f"Bearer {st.secrets['HF_TOKEN']}"}
 
     payload = {
         "inputs": PROMPT_TEMPLATE.format(code=code),
@@ -39,7 +39,7 @@ def main():
     model_name = st.selectbox(
         "Select Model",
         options=[
-            "bigcode/starcoder2-3b",
+            "bigcode/starcoder",
             "codellama/CodeLlama-7b-instruct-hf",
             "HuggingFaceH4/zephyr-7b-beta"
         ]
